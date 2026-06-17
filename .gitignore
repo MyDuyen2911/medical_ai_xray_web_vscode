@@ -1,0 +1,9 @@
+backend/venv/
+venv/
+__pycache__/
+*.pyc
+.env
+
+*.h5
+*.keras
+*.weights.h5
