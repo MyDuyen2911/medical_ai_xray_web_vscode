@@ -1,9 +1,16 @@
+# Word temporary files
+~$*
+*.tmp
+*.bak
+
+# Python / backend
 backend/venv/
 venv/
 __pycache__/
 *.pyc
 .env
 
+# Model files
 *.h5
 *.keras
 *.weights.h5
