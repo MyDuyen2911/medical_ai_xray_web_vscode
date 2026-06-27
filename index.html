@@ -3,68 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MediAI Chest - ResNet101 XAI</title>
+  <title>MediAI Chest — ResNet101 XAI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <!-- SVG icons -->
   <svg class="icon-sprite" aria-hidden="true">
     <defs>
-      <symbol id="icon-grid" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="8" height="8" rx="2"/>
-          <rect x="13" y="3" width="8" height="8" rx="2"/>
-          <rect x="3" y="13" width="8" height="8" rx="2"/>
-          <rect x="13" y="13" width="8" height="8" rx="2"/>
-        </g>
-      </symbol>
-
-      <symbol id="icon-upload" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 16V4"/>
-          <path d="M7 9l5-5 5 5"/>
-          <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/>
-        </g>
-      </symbol>
-
-      <symbol id="icon-target" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8">
-          <circle cx="12" cy="12" r="8"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="12" cy="12" r="0.6" fill="currentColor" stroke="none"/>
-        </g>
-      </symbol>
-
-      <symbol id="icon-eye" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
-          <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </g>
-      </symbol>
-
-      <symbol id="icon-clock" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M12 7v5l3.5 2"/>
-        </g>
-      </symbol>
-
-      <symbol id="icon-flow" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="6" height="5" rx="1.5"/>
-          <rect x="15" y="4" width="6" height="5" rx="1.5"/>
-          <rect x="9" y="15" width="6" height="5" rx="1.5"/>
-          <path d="M6 9v3h12V9"/>
-          <path d="M12 12v3"/>
-        </g>
-      </symbol>
+      <symbol id="icon-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></g></symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></g></symbol>
+      <symbol id="icon-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor" stroke="none"/></g></symbol>
+      <symbol id="icon-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></g></symbol>
+      <symbol id="icon-flow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="5" rx="1.5"/><rect x="15" y="4" width="6" height="5" rx="1.5"/><rect x="9" y="15" width="6" height="5" rx="1.5"/><path d="M6 9v3h12V9"/><path d="M12 12v3"/></g></symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></g></symbol>
+      <symbol id="icon-logout" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h9"/><path d="M10 12h10"/><path d="M17 8l4 4-4 4"/></g></symbol>
+      <symbol id="icon-print" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V4h12v5"/><rect x="3" y="9" width="18" height="9" rx="2"/><path d="M6 14h12M6 18h8"/></g></symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></g></symbol>
     </defs>
   </svg>
 
-  <div class="app-shell">
+  <!-- ── Auth screen ──────────────────────────────────────────────────────── -->
+  <div id="authScreen" class="auth-screen">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <div class="brand-icon">AI</div>
+        <div>
+          <h2>MediAI Chest</h2>
+          <p>ResNet101 · Explainable AI</p>
+        </div>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth-tab="login">Đăng nhập</button>
+        <button class="auth-tab" data-auth-tab="register">Đăng ký</button>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <label>Tên đăng nhập<input id="loginUsername" type="text" autocomplete="username" placeholder="Nhập tên đăng nhập" required /></label>
+        <label>Mật khẩu<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" required /></label>
+        <button type="submit" class="btn primary-btn">Đăng nhập</button>
+      </form>
+
+      <form id="registerForm" class="auth-form hidden">
+        <label>Tên đăng nhập (ít nhất 3 ký tự)<input id="registerUsername" type="text" autocomplete="username" minlength="3" placeholder="Nhập tên đăng nhập" required /></label>
+        <label>Mật khẩu (ít nhất 6 ký tự)<input id="registerPassword" type="password" autocomplete="new-password" minlength="6" placeholder="Nhập mật khẩu" required /></label>
+        <label>Nhập lại mật khẩu<input id="registerPasswordConfirm" type="password" autocomplete="new-password" minlength="6" placeholder="Nhập lại mật khẩu" required /></label>
+        <button type="submit" class="btn primary-btn">Tạo tài khoản</button>
+      </form>
+
+      <p class="auth-hint">Tài khoản được lưu trên server. Mỗi tài khoản có lịch sử chẩn đoán riêng.</p>
+    </div>
+  </div>
+
+  <!-- ── App shell ────────────────────────────────────────────────────────── -->
+  <div class="app-shell hidden" id="appShell">
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-icon">AI</div>
@@ -75,41 +71,34 @@
       </div>
 
       <nav class="nav-menu">
-        <button class="nav-link active" data-page="overview">
-          <svg class="nav-icon"><use href="#icon-grid"></use></svg>
-          Tổng quan hệ thống
-        </button>
-
-        <button class="nav-link" data-page="analyze">
-          <svg class="nav-icon"><use href="#icon-upload"></use></svg>
-          Phân tích ảnh X-quang
-        </button>
-
-        <button class="nav-link" data-page="result">
-          <svg class="nav-icon"><use href="#icon-target"></use></svg>
-          Kết quả dự đoán AI
-        </button>
-
-        <button class="nav-link" data-page="xai">
-          <svg class="nav-icon"><use href="#icon-eye"></use></svg>
-          Giải thích mô hình XAI
-        </button>
-
-        <button class="nav-link" data-page="history">
-          <svg class="nav-icon"><use href="#icon-clock"></use></svg>
-          Lịch sử chẩn đoán
-        </button>
-
-        <button class="nav-link" data-page="workflow">
-          <svg class="nav-icon"><use href="#icon-flow"></use></svg>
-          Quy trình hệ thống AI
-        </button>
+        <button class="nav-link active" data-page="overview"><svg class="nav-icon"><use href="#icon-grid"></use></svg>Tổng quan hệ thống</button>
+        <button class="nav-link" data-page="analyze"><svg class="nav-icon"><use href="#icon-upload"></use></svg>Phân tích ảnh X-quang</button>
+        <button class="nav-link" data-page="result"><svg class="nav-icon"><use href="#icon-target"></use></svg>Kết quả dự đoán AI</button>
+        <button class="nav-link" data-page="xai"><svg class="nav-icon"><use href="#icon-eye"></use></svg>Giải thích mô hình XAI</button>
+        <button class="nav-link" data-page="history"><svg class="nav-icon"><use href="#icon-clock"></use></svg>Lịch sử chẩn đoán</button>
+        <button class="nav-link" data-page="profile"><svg class="nav-icon"><use href="#icon-user"></use></svg>Hồ sơ tài khoản</button>
+        <button class="nav-link" data-page="workflow"><svg class="nav-icon"><use href="#icon-flow"></use></svg>Quy trình hệ thống AI</button>
       </nav>
 
-      <div class="sidebar-card">
-        <p class="muted">Mô hình sử dụng</p>
-        <h3>ResNet101</h3>
-        <span class="badge success">Đang sử dụng</span>
+      <div class="sidebar-bottom">
+        <div class="user-card">
+          <div class="user-card-info">
+            <svg class="user-avatar-icon"><use href="#icon-user"></use></svg>
+            <div>
+              <p class="user-card-label">Đăng nhập với</p>
+              <strong id="currentUsername">---</strong>
+            </div>
+          </div>
+          <button class="btn logout-btn" id="logoutBtn" type="button">
+            <svg class="btn-icon"><use href="#icon-logout"></use></svg>Đăng xuất
+          </button>
+        </div>
+
+        <div class="sidebar-card">
+          <p class="muted">Mô hình sử dụng</p>
+          <h3>ResNet101</h3>
+          <span class="badge success">Đang sử dụng</span>
+        </div>
       </div>
     </aside>
 
@@ -124,210 +113,105 @@
         </div>
       </header>
 
+      <!-- Overview -->
       <section id="overview" class="page active-page">
         <div class="page-heading">
-          <div>
-            <h2>Tổng quan hệ thống</h2>
-            <p>Ứng dụng ResNet101 và Explainable AI trong phân loại ảnh X-quang phổi.</p>
-          </div>
+          <div><h2>Tổng quan hệ thống</h2><p>Ứng dụng ResNet101 và Explainable AI trong phân loại ảnh X-quang phổi.</p></div>
           <span class="badge primary">Model: ResNet101</span>
         </div>
-
         <div class="stats-grid">
-          <article class="stat-card">
-            <p>Mô hình sử dụng</p>
-            <h3>ResNet101</h3>
-            <span>Mô hình học sâu dùng để phân loại ảnh X-quang phổi.</span>
-          </article>
-
-          <article class="stat-card">
-            <p>Số lớp phân loại</p>
-            <h3>4</h3>
-            <span>COVID-19, Normal, Pneumonia, Tuberculosis</span>
-          </article>
-
-          <article class="stat-card">
-            <p>Độ chính xác</p>
-            <h3>93%</h3>
-            <span>Kết quả đánh giá trên tập kiểm thử 771 ảnh.</span>
-          </article>
-
-          <article class="stat-card">
-            <p>Kỹ thuật XAI</p>
-            <h3>4</h3>
-            <span>Grad-CAM, Grad-CAM++, Integrated Gradients, Occlusion Sensitivity</span>
-          </article>
+          <article class="stat-card"><p>Mô hình sử dụng</p><h3>ResNet101</h3><span>Mô hình học sâu dùng để phân loại ảnh X-quang phổi.</span></article>
+          <article class="stat-card"><p>Số lớp phân loại</p><h3>4</h3><span>COVID-19, Normal, Pneumonia, Tuberculosis</span></article>
+          <article class="stat-card"><p>Độ chính xác</p><h3>93%</h3><span>Kết quả đánh giá trên tập kiểm thử 771 ảnh.</span></article>
+          <article class="stat-card"><p>Kỹ thuật XAI</p><h3>4</h3><span>Grad-CAM, Grad-CAM++, Integrated Gradients, Occlusion Sensitivity</span></article>
         </div>
-
         <div class="dashboard-grid two-columns">
           <article class="card">
-            <div class="card-title">
-              <h3>Hiệu quả mô hình ResNet101</h3>
-              <span class="badge success">Accuracy 93%</span>
-            </div>
-
+            <div class="card-title"><h3>Hiệu quả mô hình ResNet101</h3><span class="badge success">Accuracy 93%</span></div>
             <div class="model-list">
-              <div class="model-row highlight">
-                <span>ResNet101</span>
-                <div class="progress"><b style="width: 93%"></b></div>
-                <strong>93%</strong>
-              </div>
-
+              <div class="model-row highlight"><span>ResNet101</span><div class="progress"><b style="width:93%"></b></div><strong>93%</strong></div>
               <div class="metric-box">
-                <div>
-                  <p>Macro F1-score</p>
-                  <strong>0.94</strong>
-                </div>
-                <div>
-                  <p>Weighted F1-score</p>
-                  <strong>0.93</strong>
-                </div>
-                <div>
-                  <p>Test samples</p>
-                  <strong>771</strong>
-                </div>
+                <div><p>Macro F1-score</p><strong>0.94</strong></div>
+                <div><p>Weighted F1-score</p><strong>0.93</strong></div>
+                <div><p>Test samples</p><strong>771</strong></div>
               </div>
             </div>
           </article>
-
           <article class="card hero-card">
             <div>
               <p class="eyebrow">Mục tiêu hệ thống</p>
               <h3>Phân loại ảnh X-quang phổi và giải thích vùng ảnh ảnh hưởng đến dự đoán.</h3>
-              <p class="muted">
-                Hệ thống hỗ trợ phân loại ảnh X-quang phổi thành 4 lớp gồm COVID-19,
-                Normal, Pneumonia và Tuberculosis. Kết quả chỉ phục vụ nghiên cứu,
-                không thay thế chẩn đoán y khoa.
-              </p>
+              <p class="muted">Hệ thống hỗ trợ phân loại ảnh X-quang phổi thành 4 lớp gồm COVID-19, Normal, Pneumonia và Tuberculosis. Kết quả chỉ phục vụ nghiên cứu, không thay thế chẩn đoán y khoa.</p>
             </div>
-
             <div class="hero-real-image">
-              <img src="assets/samples/hero.jpg" alt="Ảnh X-quang minh họa hệ thống"
-                   onerror="this.closest('.hero-real-image').classList.add('missing-real-image')" />
-              <span class="missing-text">Thêm ảnh thật vào assets/samples/hero.jpg</span>
+              <img src="assets/samples/hero.jpg" alt="Ảnh X-quang minh họa" onerror="this.closest('.hero-real-image').classList.add('missing-real-image')" />
+              <span class="missing-text">Thêm ảnh vào assets/samples/hero.jpg</span>
             </div>
           </article>
         </div>
-
         <div class="sample-grid">
-          <article class="sample-card">
-            <div class="sample-image-wrap">
-              <img src="assets/samples/normal.jpg" alt="Normal chest X-ray"
-                   onerror="this.closest('.sample-image-wrap').classList.add('missing-real-image')" />
-              <span class="missing-text">assets/samples/normal.jpg</span>
-            </div>
-            <h4>Normal</h4>
-            <p>Ảnh phổi bình thường.</p>
-          </article>
-
-          <article class="sample-card">
-            <div class="sample-image-wrap">
-              <img src="assets/samples/covid19.jpg" alt="COVID-19 chest X-ray"
-                   onerror="this.closest('.sample-image-wrap').classList.add('missing-real-image')" />
-              <span class="missing-text">assets/samples/covid19.jpg</span>
-            </div>
-            <h4>COVID-19</h4>
-            <p>Ảnh X-quang thuộc lớp COVID-19.</p>
-          </article>
-
-          <article class="sample-card">
-            <div class="sample-image-wrap">
-              <img src="assets/samples/pneumonia.jpg" alt="Pneumonia chest X-ray"
-                   onerror="this.closest('.sample-image-wrap').classList.add('missing-real-image')" />
-              <span class="missing-text">assets/samples/pneumonia.jpg</span>
-            </div>
-            <h4>Pneumonia</h4>
-            <p>Ảnh X-quang thuộc lớp Pneumonia.</p>
-          </article>
-
-          <article class="sample-card">
-            <div class="sample-image-wrap">
-              <img src="assets/samples/tuberculosis.jpg" alt="Tuberculosis chest X-ray"
-                   onerror="this.closest('.sample-image-wrap').classList.add('missing-real-image')" />
-              <span class="missing-text">assets/samples/tuberculosis.jpg</span>
-            </div>
-            <h4>Tuberculosis</h4>
-            <p>Ảnh X-quang thuộc lớp Tuberculosis.</p>
-          </article>
+          <article class="sample-card"><div class="sample-image-wrap"><img src="assets/samples/normal.jpg" alt="Normal" onerror="this.closest('.sample-image-wrap').classList.add('missing-real-image')"/><span class="missing-text">assets/samples/normal.jpg</span></div><h4>Normal</h4><p>Ảnh phổi bình thường.</p></article>
+          <article class="sample-card"><div class="sample-image-wrap"><img src="assets/samples/covid19.jpg" alt="COVID-19" onerror="this.closest('.sample-image-wrap').classList.add('missing-real-image')"/><span class="missing-text">assets/samples/covid19.jpg</span></div><h4>COVID-19</h4><p>Ảnh X-quang thuộc lớp COVID-19.</p></article>
+          <article class="sample-card"><div class="sample-image-wrap"><img src="assets/samples/pneumonia.jpg" alt="Pneumonia" onerror="this.closest('.sample-image-wrap').classList.add('missing-real-image')"/><span class="missing-text">assets/samples/pneumonia.jpg</span></div><h4>Pneumonia</h4><p>Ảnh X-quang thuộc lớp Pneumonia.</p></article>
+          <article class="sample-card"><div class="sample-image-wrap"><img src="assets/samples/tuberculosis.jpg" alt="Tuberculosis" onerror="this.closest('.sample-image-wrap').classList.add('missing-real-image')"/><span class="missing-text">assets/samples/tuberculosis.jpg</span></div><h4>Tuberculosis</h4><p>Ảnh X-quang thuộc lớp Tuberculosis.</p></article>
         </div>
       </section>
 
+      <!-- Analyze -->
       <section id="analyze" class="page">
         <div class="page-heading">
-          <div>
-            <h2>Phân tích ảnh X-quang</h2>
-            <p>Tải ảnh X-quang để hệ thống dự đoán bằng mô hình ResNet101.</p>
-          </div>
+          <div><h2>Phân tích ảnh X-quang</h2><p>Tải ảnh X-quang để hệ thống dự đoán bằng mô hình ResNet101.</p></div>
           <span class="badge primary">Mô hình: ResNet101</span>
         </div>
-
         <div class="dashboard-grid analyze-grid">
           <article class="card upload-card">
             <h3>Tải ảnh X-quang phổi</h3>
-
             <label class="upload-box" for="imageInput" id="uploadBox">
               <svg class="upload-icon"><use href="#icon-upload"></use></svg>
               <strong>Kéo thả hoặc chọn ảnh</strong>
               <p>Hỗ trợ JPG, PNG, JPEG</p>
               <input id="imageInput" type="file" accept="image/*" hidden />
             </label>
-
             <button class="btn primary-btn" id="analyzeBtn">Phân tích ảnh</button>
-            <p class="small-note">
-              Backend Flask phải chạy tại http://127.0.0.1:5000/predict để trả kết quả dự đoán và ảnh XAI thật.
-            </p>
+            <p class="small-note">Kết quả sẽ được lưu tự động vào lịch sử của tài khoản bạn.</p>
           </article>
-
           <article class="card preview-card">
-            <div class="card-title">
-              <h3>Xem trước ảnh</h3>
-              <span id="fileName" class="badge neutral">Chưa chọn ảnh</span>
-            </div>
-
+            <div class="card-title"><h3>Xem trước ảnh</h3><span id="fileName" class="badge neutral">Chưa chọn ảnh</span></div>
             <div class="preview-frame" id="previewFrame">
-              <div class="frame-placeholder">
-                <span>Ảnh X-quang thật sẽ hiển thị tại đây sau khi chọn file</span>
-              </div>
+              <div class="frame-placeholder"><span>Ảnh X-quang thật sẽ hiển thị tại đây sau khi chọn file</span></div>
               <img id="previewImage" alt="X-ray preview" />
             </div>
           </article>
         </div>
-
         <div class="steps-grid">
           <article class="step-card"><span>1</span><h4>Tải ảnh</h4><p>Người dùng chọn ảnh X-quang phổi.</p></article>
-          <article class="step-card"><span>2</span><h4>Tiền xử lý</h4><p>Resize ảnh về 400x400 và chuẩn hóa dữ liệu.</p></article>
+          <article class="step-card"><span>2</span><h4>Tiền xử lý</h4><p>Resize ảnh về 400×400 và chuẩn hóa dữ liệu.</p></article>
           <article class="step-card"><span>3</span><h4>Dự đoán</h4><p>ResNet101 phân loại ảnh thành 4 lớp.</p></article>
-          <article class="step-card"><span>4</span><h4>Giải thích</h4><p>Backend trả về ảnh Grad-CAM, Grad-CAM++, IG và Occlusion thật.</p></article>
+          <article class="step-card"><span>4</span><h4>Giải thích + Lưu</h4><p>Backend trả về ảnh XAI thật và tự động lưu lịch sử.</p></article>
         </div>
       </section>
 
+      <!-- Result -->
       <section id="result" class="page">
         <div class="page-heading">
-          <div>
-            <h2>Kết quả dự đoán AI</h2>
-            <p>Kết quả dự đoán và xác suất của từng lớp bệnh.</p>
-          </div>
+          <div><h2>Kết quả dự đoán AI</h2><p>Kết quả dự đoán và xác suất của từng lớp bệnh.</p></div>
           <span class="badge primary">ResNet101 prediction</span>
         </div>
-
         <div class="empty-state" id="resultEmptyState">
           <svg class="empty-icon"><use href="#icon-target"></use></svg>
           <h3>Chưa có kết quả phân tích</h3>
           <p>Tải lên một ảnh X-quang ở mục Phân tích ảnh để xem dự đoán, độ tin cậy và xác suất từng lớp tại đây.</p>
           <button class="btn primary-btn" data-goto="analyze">Đến trang phân tích</button>
         </div>
-
         <div id="resultContent" class="hidden">
           <div class="dashboard-grid result-grid">
             <article class="card">
               <h3>Ảnh đầu vào</h3>
               <div class="large-xray" id="resultImageBox"></div>
             </article>
-
             <article class="card result-card-main">
               <p class="eyebrow">Kết quả dự đoán</p>
               <h3 id="predictedClass">---</h3>
-
               <div class="confidence-gauge">
                 <svg class="gauge-svg" viewBox="0 0 120 120">
                   <circle class="gauge-track" cx="60" cy="60" r="54"></circle>
@@ -338,125 +222,74 @@
                   <span>Độ tin cậy</span>
                 </div>
               </div>
-
               <div class="result-meta">
-                <p>Mô hình sử dụng: <strong id="resultModelName">ResNet101</strong></p>
+                <p>Mô hình sử dụng: <strong>ResNet101</strong></p>
                 <span class="badge warning" id="resultStatusBadge">Trạng thái: ---</span>
               </div>
-
-              <button class="btn primary-btn xai-btn" id="viewXaiBtn">
-                <svg class="btn-icon"><use href="#icon-eye"></use></svg>
-                Xem giải thích XAI
-              </button>
+              <div class="result-actions">
+                <button class="btn xai-btn" id="viewXaiBtn"><svg class="btn-icon"><use href="#icon-eye"></use></svg>Xem giải thích XAI</button>
+                <button class="btn print-btn" id="exportReportBtn"><svg class="btn-icon"><use href="#icon-print"></use></svg>Xuất báo cáo</button>
+              </div>
             </article>
           </div>
-
           <article class="card">
-            <div class="card-title">
-              <h3>Xác suất từng lớp</h3>
-              <span class="badge primary">Softmax output</span>
-            </div>
-
+            <div class="card-title"><h3>Xác suất từng lớp</h3><span class="badge primary">Softmax output</span></div>
             <div class="probability-list" id="probabilityList"></div>
           </article>
-
-          <div class="disclaimer">
-            Kết quả chỉ mang tính hỗ trợ tham khảo, không thay thế chẩn đoán của bác sĩ.
-          </div>
+          <div class="disclaimer">Kết quả chỉ mang tính hỗ trợ tham khảo, không thay thế chẩn đoán của bác sĩ.</div>
         </div>
       </section>
 
+      <!-- XAI -->
       <section id="xai" class="page">
         <div class="page-heading">
-          <div>
-            <h2>Giải thích mô hình XAI</h2>
-            <p>Hiển thị ảnh gốc cùng các vùng ảnh mà mô hình sử dụng để đưa ra dự đoán.</p>
-          </div>
-          <span class="badge accent">Grad-CAM · Grad-CAM++ · Integrated Gradients · Occlusion Sensitivity</span>
+          <div><h2>Giải thích mô hình XAI</h2><p>Hiển thị ảnh gốc cùng các vùng ảnh mà mô hình sử dụng để đưa ra dự đoán.</p></div>
+          <span class="badge accent">Grad-CAM · Grad-CAM++ · Integrated Gradients · Occlusion</span>
         </div>
-
         <div class="empty-state" id="xaiEmptyState">
           <svg class="empty-icon"><use href="#icon-eye"></use></svg>
           <h3>Chưa có ảnh XAI thật</h3>
           <p>Hãy phân tích ảnh trước. Backend cần trả về các trường: original_image, xai_comparison và xai_images.</p>
           <button class="btn primary-btn" data-goto="analyze">Phân tích ảnh</button>
         </div>
-
         <div id="xaiContent" class="hidden">
           <article class="card xai-result-card">
             <div>
               <p class="eyebrow">Ảnh đang được giải thích</p>
               <h3 id="xaiPredictedClass">---</h3>
               <p>Độ tin cậy: <strong id="xaiConfidence">---%</strong></p>
-              <p class="muted">
-                Các bản đồ XAI bên dưới thể hiện vùng ảnh có ảnh hưởng đến quyết định của mô hình ResNet101.
-              </p>
+              <p class="muted">Các bản đồ XAI bên dưới thể hiện vùng ảnh có ảnh hưởng đến quyết định của mô hình ResNet101.</p>
             </div>
-
             <div class="xai-input-preview" id="xaiInputPreview"></div>
           </article>
-
           <article class="card xai-strip-card" id="xaiStripCard">
-            <div class="card-title">
-              <h3>So sánh ảnh gốc và các kết quả XAI</h3>
-              <span class="badge primary">Original · Grad-CAM · Grad-CAM++ · IG · Occlusion</span>
-            </div>
-            <div class="xai-strip-wrap">
-              <img id="xaiComparisonImage" alt="XAI comparison strip" />
-            </div>
+            <div class="card-title"><h3>So sánh ảnh gốc và các kết quả XAI</h3><span class="badge primary">Original · Grad-CAM · Grad-CAM++ · IG · Occlusion</span></div>
+            <div class="xai-strip-wrap"><img id="xaiComparisonImage" alt="XAI comparison strip" /></div>
           </article>
-
           <div class="xai-grid">
-            <article class="xai-card">
-              <img id="gradcamImage" alt="Grad-CAM result" />
-              <h3>Grad-CAM</h3>
-              <p>Cho biết vùng nào trên ảnh được mô hình chú ý nhiều khi đưa ra dự đoán.</p>
-            </article>
-
-            <article class="xai-card">
-              <img id="gradcamppImage" alt="Grad-CAM++ result" />
-              <h3>Grad-CAM++</h3>
-              <p>Làm rõ hơn các vùng ảnh quan trọng, nhất là khi ảnh có nhiều khu vực cần chú ý.</p>
-            </article>
-
-            <article class="xai-card">
-              <img id="igImage" alt="Integrated Gradients result" />
-              <h3>Integrated Gradients</h3>
-              <p>Thể hiện mức độ từng vùng ảnh góp phần vào kết quả dự đoán của mô hình.</p>
-            </article>
-
-            <article class="xai-card">
-              <img id="occlusionImage" alt="Occlusion Sensitivity result" />
-              <h3>Occlusion Sensitivity</h3>
-              <p>Kiểm tra khi che từng vùng ảnh thì kết quả dự đoán thay đổi như thế nào.</p>
-            </article>
+            <article class="xai-card"><img id="gradcamImage" alt="Grad-CAM result"/><h3>Grad-CAM</h3><p>Vùng nào trên ảnh được mô hình chú ý nhiều khi đưa ra dự đoán.</p></article>
+            <article class="xai-card"><img id="gradcamppImage" alt="Grad-CAM++ result"/><h3>Grad-CAM++</h3><p>Làm rõ hơn các vùng quan trọng, nhất là khi có nhiều khu vực cần chú ý.</p></article>
+            <article class="xai-card"><img id="igImage" alt="Integrated Gradients result"/><h3>Integrated Gradients</h3><p>Mức độ từng vùng ảnh góp phần vào kết quả dự đoán của mô hình.</p></article>
+            <article class="xai-card"><img id="occlusionImage" alt="Occlusion Sensitivity result"/><h3>Occlusion Sensitivity</h3><p>Kiểm tra khi che từng vùng ảnh thì kết quả dự đoán thay đổi như thế nào.</p></article>
           </div>
-
           <article class="card note-card">
             <h3>Ghi chú giải thích</h3>
-            <p>
-              Các vùng sáng trên ảnh cho thấy những khu vực có ảnh hưởng nhiều đến quyết định của mô hình.
-              Kết quả này giúp người dùng hiểu mô hình đang dựa vào phần nào của ảnh khi dự đoán.
-              Tuy nhiên, đây chỉ là phần giải thích của hệ thống AI, không phải kết luận y khoa.
-            </p>
+            <p>Các vùng sáng cho thấy khu vực có ảnh hưởng nhiều đến quyết định của mô hình. Đây là kết quả giải thích AI, không phải kết luận y khoa.</p>
             <div class="summary-pills">
               <span>Mô hình: ResNet101</span>
               <span>XAI: Grad-CAM, Grad-CAM++, Integrated Gradients, Occlusion Sensitivity</span>
-              <span>Kết quả phụ thuộc vào ảnh đầu vào</span>
+              <span>Kết quả phụ thuộc ảnh đầu vào</span>
             </div>
           </article>
         </div>
       </section>
 
+      <!-- History -->
       <section id="history" class="page">
         <div class="page-heading">
-          <div>
-            <h2>Lịch sử chẩn đoán</h2>
-            <p>Danh sách các lần phân tích ảnh X-quang đã thực hiện trong phiên hiện tại.</p>
-          </div>
+          <div><h2>Lịch sử chẩn đoán</h2><p>Lịch sử của tài khoản <strong id="historyUsernameLabel">---</strong> được lưu trên server.</p></div>
           <input class="search-input" id="historySearchInput" type="text" placeholder="Tìm kiếm lịch sử phân tích" />
         </div>
-
         <div class="filter-row">
           <button class="filter active">Tất cả</button>
           <button class="filter">COVID-19</button>
@@ -464,61 +297,82 @@
           <button class="filter">Pneumonia</button>
           <button class="filter">Tuberculosis</button>
         </div>
-
         <article class="card table-card">
           <table>
             <thead>
               <tr>
-                <th>STT</th>
-                <th>Ảnh</th>
-                <th>Ngày phân tích</th>
-                <th>Mô hình</th>
-                <th>Kết quả</th>
-                <th>Độ tin cậy</th>
-                <th>Trạng thái</th>
-                <th>Chi tiết</th>
+                <th>STT</th><th>Ảnh</th><th>Ngày phân tích</th><th>Mô hình</th>
+                <th>Kết quả</th><th>Độ tin cậy</th><th>Trạng thái</th><th>Chi tiết</th><th>Xóa</th>
               </tr>
             </thead>
             <tbody id="historyTableBody"></tbody>
           </table>
-
-          <div class="history-empty" id="historyEmpty">
-            Chưa có lịch sử phân tích. Hãy phân tích một ảnh X-quang trước.
-          </div>
+          <div class="history-empty" id="historyEmpty">Chưa có lịch sử phân tích. Hãy phân tích một ảnh X-quang trước.</div>
         </article>
       </section>
 
+      <!-- Profile -->
+      <section id="profile" class="page">
+        <div class="page-heading">
+          <div><h2>Hồ sơ tài khoản</h2><p>Thông tin tài khoản và thống kê lịch sử chẩn đoán.</p></div>
+          <span class="badge primary" id="profileBadge">---</span>
+        </div>
+
+        <div class="profile-grid">
+          <article class="card profile-info-card">
+            <div class="profile-avatar">
+              <svg style="width:48px;height:48px;color:var(--primary)"><use href="#icon-user"></use></svg>
+            </div>
+            <h3 id="profileUsername">---</h3>
+            <p class="muted" id="profileJoined">Ngày tham gia: ---</p>
+            <div class="profile-stat-row">
+              <div class="profile-stat"><strong id="profileTotal">0</strong><span>Tổng lần quét</span></div>
+              <div class="profile-stat covid"><strong id="profileCovid">0</strong><span>COVID-19</span></div>
+              <div class="profile-stat normal"><strong id="profileNormal">0</strong><span>Normal</span></div>
+              <div class="profile-stat pneumonia"><strong id="profilePneumonia">0</strong><span>Pneumonia</span></div>
+              <div class="profile-stat tb"><strong id="profileTB">0</strong><span>Tuberculosis</span></div>
+            </div>
+          </article>
+
+          <article class="card change-pw-card">
+            <h3>Đổi mật khẩu</h3>
+            <form id="changePwForm" class="auth-form">
+              <label>Mật khẩu hiện tại<input id="oldPassword" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu hiện tại" required /></label>
+              <label>Mật khẩu mới (ít nhất 6 ký tự)<input id="newPassword" type="password" autocomplete="new-password" minlength="6" placeholder="Nhập mật khẩu mới" required /></label>
+              <label>Nhập lại mật khẩu mới<input id="newPasswordConfirm" type="password" autocomplete="new-password" minlength="6" placeholder="Nhập lại mật khẩu mới" required /></label>
+              <button type="submit" class="btn primary-btn">Cập nhật mật khẩu</button>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <!-- Workflow -->
       <section id="workflow" class="page">
         <div class="page-heading">
-          <div>
-            <h2>Quy trình hệ thống AI</h2>
-            <p>Luồng xử lý từ ảnh đầu vào đến kết quả dự đoán và giải thích.</p>
-          </div>
+          <div><h2>Quy trình hệ thống AI</h2><p>Luồng xử lý từ ảnh đầu vào đến kết quả dự đoán và giải thích.</p></div>
           <span class="badge success">ResNet101</span>
         </div>
-
         <div class="workflow-line">
-          <div class="workflow-step"><span>1</span><h4>Tải ảnh</h4><p>Upload ảnh X-quang thật.</p></div>
-          <div class="workflow-step"><span>2</span><h4>Tiền xử lý</h4><p>Resize, chuẩn hóa.</p></div>
-          <div class="workflow-step"><span>3</span><h4>ResNet101</h4><p>Mô hình phân loại ảnh.</p></div>
-          <div class="workflow-step"><span>4</span><h4>Dự đoán</h4><p>Phân loại thành 4 lớp.</p></div>
+          <div class="workflow-step"><span>1</span><h4>Đăng nhập</h4><p>Xác thực tài khoản người dùng.</p></div>
+          <div class="workflow-step"><span>2</span><h4>Tải ảnh</h4><p>Upload ảnh X-quang thật.</p></div>
+          <div class="workflow-step"><span>3</span><h4>Tiền xử lý</h4><p>Resize, chuẩn hóa.</p></div>
+          <div class="workflow-step"><span>4</span><h4>ResNet101</h4><p>Mô hình phân loại ảnh.</p></div>
           <div class="workflow-step"><span>5</span><h4>XAI</h4><p>Tạo ảnh Grad-CAM, Grad-CAM++, IG, Occlusion.</p></div>
-          <div class="workflow-step"><span>6</span><h4>Hiển thị</h4><p>Web hiển thị ảnh thật và bản đồ XAI thật.</p></div>
+          <div class="workflow-step"><span>6</span><h4>Lưu lịch sử</h4><p>Kết quả được lưu vào tài khoản trên server.</p></div>
         </div>
-
         <div class="model-cards-grid one-model">
-          <article class="model-card best">
-            <h3>ResNet101</h3>
-            <p>Model chính của hệ thống</p>
-            <span>93%</span>
-          </article>
+          <article class="model-card best"><h3>ResNet101</h3><p>Model chính của hệ thống</p><span>93%</span></article>
         </div>
       </section>
     </main>
   </div>
 
-  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+  <!-- Print report overlay -->
+  <div id="printOverlay" class="print-overlay hidden">
+    <div class="print-report" id="printReport"></div>
+  </div>
 
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>
 </html>
